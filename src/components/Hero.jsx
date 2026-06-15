@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Zap, Shield, Clock, Plane } from 'lucide-react';
+import { ArrowRight, Zap, Shield, Clock, Plane, Activity } from 'lucide-react';
 import AircraftModel from './AircraftModel';
+import { showToast } from './Toast';
 import './Hero.css';
 
 const fadeUp = {
@@ -19,7 +20,12 @@ const stats = [
   { icon: Clock, value: '<50ms', label: 'Edge' },
 ];
 
-export default function Hero() {
+export default function Hero({ setCurrentView }) {
+  
+  const startTour = () => {
+    window.dispatchEvent(new CustomEvent('start-global-tour'));
+  };
+
   return (
     <section className="hero">
       {/* Background glow accent */}
@@ -78,11 +84,11 @@ export default function Hero() {
             animate="visible"
             custom={4}
           >
-            <button className="hero-btn-primary">
-              Launch Dashboard
-              <ArrowRight />
+            <button className="hero-btn-primary" onClick={() => showToast("System initializing... Checking secure connection.")}>
+              <Activity className="hero-btn-icon" />
+              Initialize Live Dashboard
             </button>
-            <button className="hero-btn-secondary">See How It Works</button>
+            <button className="hero-btn-secondary" onClick={startTour}>Start Interactive Tour</button>
           </motion.div>
 
           <motion.div

@@ -51,14 +51,14 @@
 .navbar-link {
   font-size: 14px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.75);
   text-decoration: none;
   transition: color 0.2s ease, opacity 0.2s ease;
   cursor: pointer;
   position: relative;
 }
 
-.navbar-link:hover {
+.navbar-link:hover, .navbar-link.active {
   color: rgba(255, 255, 255, 1);
 }
 
@@ -74,7 +74,7 @@
   transition: width 0.25s ease;
 }
 
-.navbar-link:hover::after {
+.navbar-link:hover::after, .navbar-link.active::after {
   width: 100%;
 }
 

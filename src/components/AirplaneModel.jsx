@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
+import { showToast } from './Toast'
 
 export default function AirplaneModel(props) {
   const group = React.useRef()
@@ -35,7 +36,7 @@ export default function AirplaneModel(props) {
                     geometry={nodes.object009_Material001_0.geometry} 
                     onPointerOver={() => setHoveredPart('engine-R')}
                     onPointerOut={() => setHoveredPart(null)}
-                    onClick={() => alert("Critical Warning: Engine 2 degradation detected.")}
+                    onClick={() => showToast("Critical Warning: Engine 2 degradation detected.")}
                   >
                     <meshStandardMaterial color="#ef4444" emissive="#ef4444" emissiveIntensity={hoveredPart === 'engine-R' ? 4 : 1.5} toneMapped={false} />
                   </mesh>
