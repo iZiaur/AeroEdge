@@ -1,0 +1,116 @@
+.cta-section {
+  background: #f5f5f7;
+  padding: 100px 20px;
+  text-align: center;
+}
+
+/* Decorative aircraft area */
+.cta-decoration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
+  gap: 0;
+}
+
+.cta-trace-line {
+  height: 2px;
+  width: 120px;
+  background: repeating-linear-gradient(
+    to right,
+    #7c3aed 0px,
+    #7c3aed 6px,
+    transparent 6px,
+    transparent 12px
+  );
+  opacity: 0.5;
+}
+
+.cta-aircraft {
+  font-size: 80px;
+  line-height: 1;
+  margin: 0 16px;
+  filter: grayscale(0.2);
+}
+
+/* AI chip icon */
+.cta-chip-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(124, 58, 237, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.cta-chip-icon svg {
+  color: #7c3aed;
+}
+
+/* Heading */
+.cta-heading {
+  font-size: 36px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 20px;
+  line-height: 1.3;
+}
+
+.cta-heading-purple {
+  background: linear-gradient(135deg, #7c3aed, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Subtitle */
+.cta-subtitle {
+  font-size: 16px;
+  color: #6b7280;
+  margin: 0 auto 40px;
+  max-width: 520px;
+  line-height: 1.6;
+}
+
+/* Button */
+.cta-button {
+  display: inline-block;
+  background: #7c3aed;
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 36px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
+}
+
+.cta-button:hover {
+  background: #6d28d9;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(124, 58, 237, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cta-section {
+    padding: 60px 16px;
+  }
+
+  .cta-heading {
+    font-size: 28px;
+  }
+
+  .cta-trace-line {
+    width: 60px;
+  }
+
+  .cta-aircraft {
+    font-size: 56px;
+  }
+}

@@ -1,0 +1,135 @@
+.edge-wrapper {
+  padding: 80px 20px;
+}
+
+.edge-section {
+  background: #1e1e2e;
+  padding: 80px 40px;
+  border-radius: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Gradient glow behind the section */
+.edge-section::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.edge-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Icon */
+.edge-icon-wrapper {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(124, 58, 237, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  box-shadow: 0 0 40px rgba(124, 58, 237, 0.3), 0 0 80px rgba(124, 58, 237, 0.1);
+}
+
+.edge-icon-wrapper svg {
+  color: #7c3aed;
+}
+
+/* Text */
+.edge-heading {
+  font-size: 32px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 16px;
+  line-height: 1.3;
+}
+
+.edge-subtitle {
+  font-size: 16px;
+  color: #94a3b8;
+  margin: 0 auto 48px;
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+/* Metric cards */
+.edge-cards {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.edge-card {
+  background: #2d2054;
+  border-radius: 16px;
+  padding: 32px;
+  text-align: center;
+  flex: 1;
+  min-width: 200px;
+  max-width: 280px;
+}
+
+.edge-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(124, 58, 237, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.edge-card-icon svg {
+  color: #a78bfa;
+}
+
+.edge-card-number {
+  font-size: 36px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 8px;
+  line-height: 1;
+}
+
+.edge-card-label {
+  font-size: 14px;
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .edge-section {
+    padding: 48px 20px;
+  }
+
+  .edge-heading {
+    font-size: 24px;
+  }
+
+  .edge-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .edge-card {
+    max-width: 100%;
+    width: 100%;
+  }
+}

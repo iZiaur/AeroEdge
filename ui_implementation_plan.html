@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AeroEdge UI Implementation Plan</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; color: #1a1a2e; padding: 40px 60px; line-height: 1.6; background-color: #ffffff; }
+        h1 { font-size: 28px; color: #0f3460; margin-bottom: 10px; border-bottom: 3px solid #0f3460; padding-bottom: 10px; }
+        h2 { font-size: 18px; color: #533483; margin-top: 25px; margin-bottom: 10px; border-bottom: 1px solid #e0e0e0; padding-bottom: 5px; }
+        .subtitle { font-size: 14px; color: #666; margin-bottom: 30px; font-style: italic; }
+        ul { margin-left: 20px; margin-bottom: 10px; font-size: 14px; }
+        li { margin-bottom: 6px; }
+        .stage-card { background: #f8f9ff; border-left: 4px solid #533483; padding: 15px 20px; margin-bottom: 20px; border-radius: 0 8px 8px 0; }
+        .stage-title { font-size: 16px; font-weight: 700; color: #0f3460; margin-bottom: 8px; }
+        .goal { font-weight: 600; color: #333; margin-bottom: 5px; font-size: 14px; }
+        .output { margin-top: 10px; font-weight: 600; color: #0f3460; font-size: 14px; background: #e9ecf5; padding: 5px 10px; border-radius: 4px; display: inline-block; }
+        .team-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .tag { background: #533483; color: white; padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+        @media print {
+            body { padding: 20px 30px; }
+            .stage-card { break-inside: avoid; border: 1px solid #ddd; border-left: 4px solid #533483; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="team-header">
+    <div>
+        <div style="font-size: 24px; font-weight: 700; color: #0f3460;">✈ AeroEdge</div>
+        <div style="font-size: 13px; color: #444;">Frontend Engineering Plan</div>
+    </div>
+    <div style="text-align: right;">
+        <span class="tag">Team BitOps</span>
+    </div>
+</div>
+
+<h1>10-Stage UI Implementation Master Plan</h1>
+<p class="subtitle">Step-by-step execution roadmap for integrating AI-generated UI components into the AeroEdge React/Vite dashboard.</p>
+
+<div class="stage-card">
+    <div class="stage-title">Stage 1: Project Setup & UI Generator Scaffolding</div>
+    <div class="goal">Goal: Set up the Vite + React environment and integrate the base layout.</div>
+    <ul>
+        <li>Base React router setup.</li>
+        <li>Integration of the generated core layout (Sidebar, Top Navbar, Main Content Area).</li>
+        <li>Global CSS/Tailwind configuration.</li>
+    </ul>
+    <div class="output">Output: A static, styled shell of the AeroEdge dashboard running locally.</div>
+</div>
+
+<div class="stage-card">
+    <div class="stage-title">Stage 2: 3D Aircraft Digital Twin Integration</div>
+    <div class="goal">Goal: Embed the interactive 3D aircraft model into the dashboard.</div>
+    <ul>
+        <li><code>Three.js</code> and <code>React Three Fiber</code> setup.</li>
+        <li>3D aircraft rendering component with orbital controls (rotate, zoom).</li>
+        <li>Interactive "clickable" zones on the aircraft (e.g., clicking the engine highlights it).</li>
+    </ul>
+    <div class="output">Output: A functional 3D panel within the dashboard.</div>
+</div>
+
+<div class="stage-card">
+    <div class="stage-title">Stage 3: Edge Defect Detection Interface (Vision Agent UI)</div>
+    <div class="goal">Goal: Build the interface for uploading images and viewing defect bounding boxes.</div>
+    <ul>
+        <li>Image upload drag-and-drop zone.</li>
+        <li>Image viewer with overlay capabilities for drawing bounding boxes around defects.</li>
+        <li>Defect severity classification cards.</li>
+    </ul>
+    <div class="output">Output: A component that mimics the Vision Agent output showing cracks/dents.</div>
+</div>
+
+<div class="stage-card">
+    <div class="stage-title">Stage 4: Remaining Useful Life (RUL) Prediction Charts</div>
+    <div class="goal">Goal: Visualize the engine health data.</div>
+    <ul>
+        <li>Integration of <code>Recharts</code> for data visualization.</li>
+        <li>Line charts showing the degradation curve and confidence intervals.</li>
+        <li>"Top Contributing Sensors" progress bars.</li>
+    </ul>
+    <div class="output">Output: A dynamic health panel showing engine cycle life and degradation reasons.</div>
+</div>
+
+<div class="stage-card">
+    <div class="stage-title">Stage 5: Multi-Agent Activity Stream</div>
+    <div class="goal">Goal: Show the LangGraph agents collaborating in real-time.</div>
+    <ul>
+        <li>A timeline/feed UI component.</li>
+        <li>Animated entry of new agent actions (e.g., "Vision Agent found defect" -> "RUL Agent calculating").</li>
+        <li>Status indicators (idle, working, complete).</li>
+    </ul>
+    <div class="output">Output: A live-updating feed panel making the "Multi-Agent" concept visible.</div>
+</div>
+
+<div class="stage-card">
+    <div class="stage-title">Stage 6: Work Order & Compliance Management View</div>
+    <div class="goal">Goal: Display the output of the Work Order and Compliance agents.</div>
+    <ul>
+        <li>Sortable data tables for active work orders.</li>
+        <li>Detail panels showing cost estimates, parts required, and downtime.</li>
+        <li>Compliance validation badges (EASA/FAA checked).</li>
+    </ul>
+    <div class="output">Output: A management table for prioritized maintenance tasks and regulatory approvals.</div>
+</div>
+
+<div class="stage-card">
+    <div class="stage-title">Stage 7: Natural Language Fleet Intelligence (Chat UI)</div>
+    <div class="goal">Goal: The interactive conversational interface for judges/engineers.</div>
+    <ul>
+        <li>Chat window layout (message bubbles, input field, send button).</li>
+        <li>"Typing" animations for the AI responses.</li>
+        <li>Formatted response components (rendering lists, bold text, and cost data cleanly).</li>
+    </ul>
+    <div class="output">Output: A functional chat interface ready to be hooked up to the Gemini API backend.</div>
+</div>
+
+<div class="stage-card">
+    <div class="stage-title">Stage 8: Edge vs Cloud Live Benchmark Panel</div>
+    <div class="goal">Goal: Build the specific panel that proves the "AI at the Edge" theme.</div>
+    <ul>
+        <li>Split-view comparison cards (Cloud vs Edge).</li>
+        <li>Animated progress bars to simulate latency (847ms vs 38ms).</li>
+        <li>Dynamic metric counters.</li>
+    </ul>
+    <div class="output">Output: A dedicated section of the dashboard designed to win the edge computing judging criteria.</div>
+</div>
+
+<div class="stage-card">
+    <div class="stage-title">Stage 9: Dashboard Assembly & State Management</div>
+    <div class="goal">Goal: Connect all the individual components together.</div>
+    <ul>
+        <li>React Context / State management to link actions across components.</li>
+        <li>Responsive design tweaks to ensure it works on standard laptop displays.</li>
+    </ul>
+    <div class="output">Output: A unified, cohesive dashboard where interacting with one component updates the others.</div>
+</div>
+
+<div class="stage-card">
+    <div class="stage-title">Stage 10: Polish, Animations & Micro-interactions</div>
+    <div class="goal">Goal: Make it look like a high-end enterprise product.</div>
+    <ul>
+        <li><code>Framer Motion</code> integration.</li>
+        <li>Smooth page transitions, hover effects on buttons, and pulsing indicators for critical alerts.</li>
+        <li>Final color contrast and typography checks.</li>
+    </ul>
+    <div class="output">Output: The final, Demo-Day-ready AeroEdge application interface.</div>
+</div>
+
+</body>
+</html>
