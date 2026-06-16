@@ -13,7 +13,7 @@ const barData = [
   { label: 'VT-IJK', height: 78, color: '#10b981' },
 ];
 
-const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+const API_URL = import.meta.env.VITE_OPEN_SOURCE_LLM_URL || 'http://localhost:11434/api/generate';
 
 export default function ChatInterface() {
   const [inputValue, setInputValue] = useState('');
@@ -41,24 +41,25 @@ export default function ChatInterface() {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${API_KEY}`, {
+      // Connecting to an open-source LLM like LLaMA 3 via Ollama
+      const response = await fetch(API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          system_instruction: {
-            parts: [{ text: "You are AeroEdge, an AI assistant for aircraft maintenance engineers. You have access to real-time fleet telemetry. Keep answers concise, professional, and data-driven. Highlight any risks with engines or surface defects. Mention 'VT-ANE' has engine degradation. Use Markdown formatting for emphasis." }]
-          },
-          contents: [{ role: 'user', parts: [{ text: userMsg.text }] }]
+          model: 'llama3', // Default open source model
+          prompt: `System: You are AeroEdge, an AI assistant for aircraft maintenance engineers. Keep answers concise, professional, and data-driven. Highlight any risks with engines or surface defects. Mention 'VT-ANE' has engine degradation. Use Markdown formatting for emphasis.\nUser: ${userMsg.text}`,
+          stream: false
         })
       });
       
-      const data = await response.json();
-      
       if (!response.ok) {
-        throw new Error(data.error?.message || `HTTP error! status: ${response.status}`);
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
       
-      const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't process that.";
+      const data = await response.json();
+      
+      // Ollama returns { response: "..." }
+      const aiText = data.response || "Sorry, I couldn't process that.";
       
       setMessages(prev => [...prev, { id: Date.now() + 1, role: 'model', text: aiText }]);
     } catch (error) {

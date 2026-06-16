@@ -59,7 +59,7 @@ function App() {
         { element: '.eh-container', popover: { title: 'RUL Prediction', description: 'The Remaining Useful Life agent uses telemetry to predict exactly how many flight cycles an engine has left before failure. Next is the Agent Stream.', side: 'top', align: 'start' }},
         { element: '.stream-container', popover: { title: 'Agent Activity Stream', description: 'Watch the agents talk to each other! The Vision agent alerts the RUL agent, who then alerts the Work Order agent in a live chain reaction.', side: 'left', align: 'start' }},
         { element: '.wo-container', popover: { title: 'Work Order Matrix', description: 'Finally, the AI drafts a complete repair plan, calculates parts costs, and cross-references FAA/EASA compliance rules automatically.', side: 'top', align: 'center' }},
-        { element: '.chat-container', popover: { title: 'Fleet Intelligence', description: 'You can query the entire system using Natural Language powered by Gemini. Ask it anything!', side: 'left', align: 'start' }},
+        { element: '.chat-container', popover: { title: 'Fleet Intelligence', description: 'You can query the entire system using Natural Language powered by an Open-Source LLM (e.g., Llama 3). Ask it anything!', side: 'left', align: 'start' }},
         { popover: { title: 'Tour Complete', description: 'You have seen the entire AeroEdge platform. Feel free to explore on your own!' } }
       ]
     });

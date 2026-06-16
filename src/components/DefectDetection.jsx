@@ -8,7 +8,7 @@ export default function DefectDetection() {
   const [defects, setDefects] = useState([]);
   const [latency, setLatency] = useState(0);
   const [errorMsg, setErrorMsg] = useState('');
-  const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+  const API_URL = import.meta.env.VITE_OPEN_SOURCE_LLM_URL || 'http://localhost:11434/api/generate';
 
   const handleUpload = () => {
     // Simulate image upload using a locally generated image to prevent network blocks
@@ -33,31 +33,24 @@ export default function DefectDetection() {
       
       const base64data = await base64Promise;
 
-      // 2. Call Gemini Vision API
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${API_KEY}`, {
+      // 2. Call Open-Source Vision LLM (e.g., LLaVA via Ollama)
+      const response = await fetch(API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          system_instruction: {
-            parts: [{ text: "You are an aircraft defect detection vision model. Return ONLY a valid JSON array of objects. Each object must have: 'type' (string, e.g. 'Corrosion', 'Crack'), 'confidence' (number between 80 and 99), 'top' (percentage string, e.g. '30%'), 'left' (percentage string), 'width' (percentage string), 'height' (percentage string). Do NOT include markdown backticks. Return maximum 3 defects." }]
-          },
-          contents: [{
-            role: "user",
-            parts: [
-              { text: "Analyze this aircraft wing for defects." },
-              { inlineData: { mimeType: "image/png", data: base64data } }
-            ]
-          }]
+          model: 'llava', // Open-source vision model
+          prompt: "Analyze this aircraft wing for defects. Return ONLY a valid JSON array of objects. Each object must have: 'type' (string, e.g. 'Corrosion', 'Crack'), 'confidence' (number between 80 and 99), 'top' (percentage string, e.g. '30%'), 'left' (percentage string), 'width' (percentage string), 'height' (percentage string). Do NOT include markdown backticks. Return maximum 3 defects.",
+          images: [base64data],
+          stream: false
         })
       });
 
       if (!response.ok) {
-        const errData = await response.json();
-        throw new Error(errData.error?.message || 'API request failed');
+        throw new Error(`API request failed with status: ${response.status}`);
       }
       
       const data = await response.json();
-      let rawText = data.candidates?.[0]?.content?.parts?.[0]?.text || "[]";
+      let rawText = data.response || "[]";
       
       // Extract array from text using regex in case of conversational wrapper
       const match = rawText.match(/\[([\s\S]*?)\]/);

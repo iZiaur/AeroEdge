@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@google/genai": "^2.8.0",
     "@react-three/drei": "^9.115.0",
     "@react-three/fiber": "^8.17.0",
     "driver.js": "^1.4.0",
